@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/S4-Backend.iml" filepath="$PROJECT_DIR$/.idea/S4-Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/datalayer/datalayer.iml" filepath="$PROJECT_DIR$/datalayer/datalayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/repositories/repositories.iml" filepath="$PROJECT_DIR$/repositories/repositories.iml" />
+      <module fileurl="file://$PROJECT_DIR$/restserver/restserver.iml" filepath="$PROJECT_DIR$/restserver/restserver.iml" />
+    </modules>
+  </component>
+</project>
