@@ -34,7 +34,7 @@ public class ReviewController {
 
     @GetMapping(path = "product/{id}",
     produces = MediaType.APPLICATION_JSON)
-    public List<Review> getReviewsByProductId(@PathVariable Integer id) {
+    public List<Review> getReviewsByProductId(@PathVariable Long id) {
         return repository.getByProductId(id);
     }
 
@@ -51,6 +51,14 @@ public class ReviewController {
     produces = MediaType.APPLICATION_JSON)
     public Review deleteReview(@RequestBody Review review) {
         repository.delete(review);
+        return review;
+    }
+
+    @PutMapping(path = "update",
+    consumes = MediaType.APPLICATION_JSON,
+    produces = MediaType.APPLICATION_JSON)
+    public Review updateReview(@RequestBody Review review) {
+        repository.update(review);
         return review;
     }
 }

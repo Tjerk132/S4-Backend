@@ -42,7 +42,9 @@ public class ProductContext extends Context<Product> {
 
         try {
             product = dao.queryForId(id);
-            product.setReviewCount(reviewContext.getProductReviewCount(id));
+            if(product != null) {
+                product.setReviewCount(reviewContext.getProductReviewCount(id));
+            }
         }
         catch (SQLException e) {
             logger.warning(e.toString());
