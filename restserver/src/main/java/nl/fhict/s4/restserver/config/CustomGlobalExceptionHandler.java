@@ -2,7 +2,6 @@ package nl.fhict.s4.restserver.config;
 
 import nl.fhict.s4.restserver.config.exceptions.CustomInvalidException;
 import nl.fhict.s4.restserver.config.exceptions.CustomNotFoundException;
-import org.springframework.boot.logging.LogLevel;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,15 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,6 +27,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     // Let Spring BasicErrorController handle the exception, we just override the status code
     @ExceptionHandler(CustomNotFoundException.class)
     public ResponseEntity customHandleNotFound(Exception ex, WebRequest request) {
+
         CustomErrorResponse errors = new CustomErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
@@ -46,18 +43,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(ConstraintViolationException.class)
     public void constraintViolationException(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value());
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity handleInternalServerError(Exception ex, HttpServletResponse response) {
-        logger.error(ex.getMessage(), ex);
-        ex.printStackTrace();
-        if (ex instanceof NullPointerException) {
-            CustomErrorResponse errors = new CustomErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        }
-        CustomErrorResponse errors = new CustomErrorResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
-        return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
     }
 
     // error handle for @Valid

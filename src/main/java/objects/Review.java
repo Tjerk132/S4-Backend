@@ -24,6 +24,14 @@ public class Review {
     private int productId;
 
     @DatabaseField
+    private String author;
+
+    @DatabaseField
+    private Long timeMillis;
+
+    private String date;
+
+    @DatabaseField
     private String title;
 
     @DatabaseField
@@ -34,14 +42,6 @@ public class Review {
 
     @DatabaseField
     private int liked;
-
-    @DatabaseField
-    private String author;
-
-    @DatabaseField
-    private Long timeMillis;
-
-    private String date;
 
     private List<String> pros;
 
@@ -81,26 +81,6 @@ public class Review {
 
     public long getTimeMillis() { return timeMillis; }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public int getLiked() {
-        return liked;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -114,27 +94,8 @@ public class Review {
         this.timeMillis = l;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public String getDate() {
+        return date;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setStarRating(int starRating) {
-        this.starRating = starRating;
-    }
-
-    public void setLiked(int liked) {
-        this.liked = liked;
-    }
 }

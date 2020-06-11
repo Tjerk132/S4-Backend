@@ -25,9 +25,7 @@ public class ReviewContext extends Context<Review> {
 
         try {
             review = dao.queryForId(id);
-            if(review != null) {
-                reviewCreator.createReview(review);
-            }
+            reviewCreator.createReview(review);
         }
         catch (SQLException e) {
             logger.warning(e.toString());
@@ -74,7 +72,7 @@ public class ReviewContext extends Context<Review> {
     }
 
     public List<Review> getByProductId(long id) {
-        List<Review> reviews = new LinkedList<>();
+        List<Review> reviews = null;
         try {
             reviews = dao.queryBuilder()
                     .where()
@@ -85,9 +83,11 @@ public class ReviewContext extends Context<Review> {
             for(Review r : reviews) {
                 reviewCreator.createReviewByProduct(r);
             }
+
         }
         catch (SQLException e) {
             logger.warning(e.toString());
+
         }
         return reviews;
     }

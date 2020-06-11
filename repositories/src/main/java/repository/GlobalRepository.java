@@ -34,7 +34,4 @@ public abstract class GlobalRepository<T> implements IRepository<T> {
     public void delete(T object) {
         context.delete(object);
     }
-
-    @Override
-    public void update(T object) { context.update(object); }
 }

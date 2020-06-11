@@ -29,10 +29,4 @@ public interface IRepository<T> {
      * @param entity the object to be deleted
      */
     void delete(final T entity);
-
-    /**
-     * update the object in the database
-     * @param entity the object to be updated
-     */
-    void update(final T entity);
 }

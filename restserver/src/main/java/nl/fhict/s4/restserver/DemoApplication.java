@@ -57,15 +57,10 @@ public class DemoApplication {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-
-        // Allow the Vue client URL and port
-        config.setAllowedOrigins(Arrays.asList("http://localhost:8005","http://192.168.178.213:8005"));
-        // Allow only thew necessary methods
+        // *** URL below needs to match the Vue client URL and port ***
+        config.setAllowedOrigins(Collections.singletonList("http://localhost:8005"));
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
-        // Allow all headers for now
-        config.setAllowedHeaders(Collections.singletonList("*"));
-        // Expose Authentication header for client to retrieve jwt-token
-        config.setExposedHeaders(Collections.singletonList("Authorization"));
+        config.setAllowedHeaders(Collections.singletonList("*")); //Authentication
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);

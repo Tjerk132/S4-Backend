@@ -24,20 +24,18 @@ public class UserController {
         return repository.getAll();
     }
 
-    @PostMapping(path = "login",
+    @PostMapping(path = "/login",
     consumes = MediaType.APPLICATION_JSON,
     produces = MediaType.APPLICATION_JSON)
     public User loginUser(@RequestBody User user) {
 
         if(repository.loginUser(user) == null) {
-            throw new CustomNotFoundException(User.class.getSimpleName(), "Unable to login");
+            throw new CustomInvalidException(User.class.getSimpleName(), "Unable to login");
         }
-        user.setPassword("$-()-$");
-        user.setEmailAddress("email@host.com");
-        return user;
+        else return user;
     }
 
-    @PostMapping(path = "register",
+    @PostMapping(path = "/register",
     consumes = MediaType.APPLICATION_JSON,
     produces = MediaType.APPLICATION_JSON)
     public User registerUser(@RequestBody User user) {
@@ -63,19 +61,11 @@ public class UserController {
         else throw new CustomNotFoundException(User.class.getSimpleName(), id);
     }
 
-    @DeleteMapping(path = "delete",
+    @DeleteMapping(path = "/delete",
     consumes = MediaType.APPLICATION_JSON,
     produces = MediaType.APPLICATION_JSON)
     public User deleteUser(@RequestBody User user) {
         repository.delete(user);
-        return user;
-    }
-
-    @PutMapping(path = "update",
-    consumes = MediaType.APPLICATION_JSON,
-    produces = MediaType.APPLICATION_JSON)
-    public User updateUser(@RequestBody User user) {
-        repository.update(user);
         return user;
     }
 

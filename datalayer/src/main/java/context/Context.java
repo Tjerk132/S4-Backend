@@ -97,15 +97,6 @@ public abstract class Context<T> implements IContext<T> {
         }
     }
 
-    @Override
-    public void update(T item) {
-        try {
-            dao.update(item);
-        } catch (SQLException e) {
-            logger.warning(e.toString());
-        }
-    }
-
     protected void close() {
         try {
             if (connectionSource != null) {
