@@ -1,5 +1,11 @@
 package util;
 
+import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
 public class DbConnections {
 
     private static final String JDBC = "jdbc";
@@ -22,6 +28,26 @@ public class DbConnections {
                 builder.append(":");
         }
         return builder.toString().replace(",","%");
+    }
+
+    public static JdbcPooledConnectionSource createOrmConnection(String connectionString) {
+        List<String> dbProperties = Arrays.asList(connectionString.split("%"));
+        final String dbString = dbProperties.get(0);
+        try {
+            //in-memory db
+            if(dbProperties.size() == 1) {
+                return new JdbcPooledConnectionSource(dbString);
+            }
+            //production db
+            else {
+                return new JdbcPooledConnectionSource(dbString,
+                        dbProperties.get(1), dbProperties.get(2));
+            }
+        }
+        catch (SQLException e) {
+//            logger.warn(e.toString());
+            return null;
+        }
     }
 
     private enum dbType {

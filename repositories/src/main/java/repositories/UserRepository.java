@@ -1,10 +1,9 @@
 package repositories;
 
-import objects.User;
+import objects.user.User;
 import org.springframework.stereotype.Repository;
 import repository.GlobalRepository;
 import usercontext.UserContext;
-
 
 @Repository
 public class UserRepository extends GlobalRepository<User> {
@@ -21,4 +20,6 @@ public class UserRepository extends GlobalRepository<User> {
     }
 
     public String getEmail(long id) { return userContext.getEmail(id); }
+
+    public User getByName(String name) { return userContext.getByName(name); }
 }

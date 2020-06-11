@@ -3,6 +3,9 @@ package context;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+import objects.user.AdminActivity;
+import usercontext.AdminActivityContext;
+import util.DbConnections;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,33 +16,45 @@ import java.util.logging.Logger;
 
 public abstract class Context<T> implements IContext<T> {
 
-    public Context(Class<T> clazz, String connectionString) {
+    public Context(Class<T> clazz, String connectionString, boolean logActivity) {
 
-        List<String> dbProperties = Arrays.asList(connectionString.split("%"));
-        final String dbString = dbProperties.get(0);
+        //create log activity context for context if requested
+        if (logActivity) {
+            setConnectionSource(connectionString, clazz);
+            createLogActivityDao(connectionString);
+        }
+        // if class is not activity log dao itself
+        else if(!clazz.isInstance(AdminActivity.class)) {
+            setConnectionSource(connectionString, clazz);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void createLogActivityDao(String connectionString) {
+        this.adminActivityContext = new AdminActivityContext(connectionString);
+        adminActivityContext.setAdminActivityDao(createDao(AdminActivity.class));
+    }
+    @SuppressWarnings("unchecked")
+    private void setConnectionSource(String connectionString, Class<?> clazz) {
+        this.connectionSource = DbConnections.createOrmConnection(connectionString);
+        this.dao = createDao(clazz);
+    }
+
+    private Dao createDao(Class<?> clazz) {
         try {
-            if(dbProperties.size() == 1) {
-                logger.info("No database properties submitted");
-                this.connectionSource =
-                        new JdbcPooledConnectionSource(dbString);
-            }
-            else {
-                //user submitted credentials
-                this.connectionSource =
-                        new JdbcPooledConnectionSource(dbString,
-                                dbProperties.get(1), dbProperties.get(2));
-            }
-
-            this.dao = DaoManager.createDao(connectionSource, clazz);
+            return DaoManager.createDao(connectionSource, clazz);
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+//            logger.warning(e.toString());
+            return null;
         }
     }
 
     private JdbcPooledConnectionSource connectionSource;
 
     protected Dao<T, Long> dao;
+
+    protected AdminActivityContext adminActivityContext;
 
     protected static final Logger logger = Logger.getLogger(Context.class.getName());
 

@@ -1,7 +1,8 @@
 package usercontext;
 
 import context.Context;
-import objects.User;
+import objects.user.User;
+import util.HashSaltAuthentication;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -10,8 +11,11 @@ import java.util.List;
 public class UserContext extends Context<User> {
 
     public UserContext(String connectionString) {
-        super(User.class, connectionString);
+        super(User.class, connectionString, true);
+        this.priorityContext = new PriorityContext(connectionString);
     }
+
+    private PriorityContext priorityContext;
 
     private static final String PW_SECURE = "$-()-$";
 
@@ -59,7 +63,7 @@ public class UserContext extends Context<User> {
                  .countOf() != 0;
 
             if(!existing) {
-                user.setPassword(PasswordAuthentication.getSaltedHash(user.getPassword()));
+                user.setPassword(HashSaltAuthentication.getSaltedHash(user.getPassword()));
                 dao.create(user);
             }
             else throw new IllegalArgumentException();
@@ -82,9 +86,10 @@ public class UserContext extends Context<User> {
                     .queryForFirst();
 
             //select first record and return given password matches with stored password
-            if(storedUser != null && PasswordAuthentication.check(user.getPassword(), storedUser.getPassword())) {
+            if(storedUser != null && HashSaltAuthentication.check(user.getPassword(), storedUser.getPassword())) {
                 storedUser.setPassword(PW_SECURE);
                 storedUser.setEmailAddress(EMAIL_SECURE);
+                storedUser.setRole(priorityContext.getByUserId(storedUser.getId()).getRole());
                 return storedUser;
             }
 
@@ -104,6 +109,23 @@ public class UserContext extends Context<User> {
         }
         catch (SQLException e) {
             logger.warning(e.toString());
+            return null;
+        }
+    }
+
+    public User getByName(String name) {
+        try {
+            User user = dao.queryBuilder()
+                    .where()
+                    .eq("username", name)
+                    .queryForFirst();
+
+            user.setRole(priorityContext.getByUserId(user.getId()).getRole());
+
+            return user;
+        }
+        catch (SQLException e) {
+//            logger.warning(e.toString());
             return null;
         }
     }

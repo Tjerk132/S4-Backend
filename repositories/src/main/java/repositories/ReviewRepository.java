@@ -1,6 +1,6 @@
 package repositories;
 
-import objects.Review;
+import objects.store.Review;
 import org.springframework.stereotype.Repository;
 import repository.GlobalRepository;
 import reviewcontext.ReviewContext;

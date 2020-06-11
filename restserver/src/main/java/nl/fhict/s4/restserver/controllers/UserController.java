@@ -4,7 +4,7 @@ import nl.fhict.s4.restserver.config.exceptions.CustomInvalidException;
 import nl.fhict.s4.restserver.config.exceptions.CustomNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import repositories.UserRepository;
-import objects.User;
+import objects.user.User;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -29,10 +29,11 @@ public class UserController {
     produces = MediaType.APPLICATION_JSON)
     public User loginUser(@RequestBody User user) {
 
-        if(repository.loginUser(user) == null) {
-            throw new CustomInvalidException(User.class.getSimpleName(), "Unable to login");
+        user = repository.loginUser(user);
+        if(user == null) {
+            throw new CustomNotFoundException(User.class.getSimpleName(), "Unable to login");
         }
-        else return user;
+        return user;
     }
 
     @PostMapping(path = "/register",

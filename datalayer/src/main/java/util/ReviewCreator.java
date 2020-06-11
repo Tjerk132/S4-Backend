@@ -1,7 +1,7 @@
 package util;
 
-import objects.Review;
-import objects.ReviewProCon;
+import objects.store.Review;
+import objects.store.ReviewProCon;
 import reviewcontext.ProConContext;
 
 import java.sql.Timestamp;

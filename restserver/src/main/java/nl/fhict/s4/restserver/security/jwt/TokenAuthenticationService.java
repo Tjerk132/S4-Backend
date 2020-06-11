@@ -2,13 +2,27 @@ package nl.fhict.s4.restserver.security.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import objects.user.User;
+import objects.user.UserInfo;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import repositories.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TokenAuthenticationService {
+
+    public TokenAuthenticationService() {
+        this.repository = new UserRepository();
+    }
+
+    private UserRepository repository;
 
     private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 10; // 10 days
 
@@ -45,7 +59,14 @@ public class TokenAuthenticationService {
 
             if (username != null) // we managed to retrieve a user
             {
-                return new AuthenticatedUser(username);
+                User storedUser = repository.getByName(username);
+
+                List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+                grantedAuthorities.add(new SimpleGrantedAuthority(storedUser.getRole().toString()));
+
+                return new UsernamePasswordAuthenticationToken(
+                        new UserInfo(String.valueOf(storedUser.getId()), storedUser.getUsername()), storedUser.getPassword(), grantedAuthorities
+                );
             }
         }
         return null;

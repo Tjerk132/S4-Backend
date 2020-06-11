@@ -1,4 +1,4 @@
-package objects;
+package objects.store;
 
 import java.util.List;
 

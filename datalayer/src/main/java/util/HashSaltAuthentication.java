@@ -1,4 +1,4 @@
-package usercontext;
+package util;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -10,13 +10,13 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Logger;
 
-final class PasswordAuthentication
+public final class HashSaltAuthentication
 {
-    private PasswordAuthentication() {
+    private HashSaltAuthentication() {
         //Nothing
     }
 
-    private static final Logger logger = Logger.getLogger(PasswordAuthentication.class.getName());
+    private static final Logger logger = Logger.getLogger(HashSaltAuthentication.class.getName());
 
     // The higher the number of iterations the more expensive
     // computing the hash is for us but also for the attacker.
@@ -26,7 +26,7 @@ final class PasswordAuthentication
     /** Computes a salted PBKDF2 hash of given plaintext password
      suitable for storing in a database.
      Empty passwords are not supported. */
-    static String getSaltedHash(String password)  {
+    public static String getSaltedHash(String password)  {
 
         final int saltLength = 32;
         byte[] salt = new byte[saltLength];
@@ -42,7 +42,7 @@ final class PasswordAuthentication
 
     /** Checks whether given plaintext password corresponds
      to a stored salted hash of the password. */
-    static boolean check(String password, String stored) {
+    public static boolean check(String password, String stored) {
 
         String[] saltAndHash = stored.split("\\$");
         if (saltAndHash.length != 2) {

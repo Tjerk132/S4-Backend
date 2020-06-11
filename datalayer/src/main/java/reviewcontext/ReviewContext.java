@@ -1,8 +1,8 @@
 package reviewcontext;
 
 import context.Context;
-import objects.Product;
-import objects.Review;
+import objects.store.Product;
+import objects.store.Review;
 import util.ReviewCreator;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ReviewContext extends Context<Review> {
 
     public ReviewContext(String connectionString) {
-        super(Review.class, connectionString);
+        super(Review.class, connectionString, true);
         this.reviewCreator = new ReviewCreator(connectionString);
     }
 

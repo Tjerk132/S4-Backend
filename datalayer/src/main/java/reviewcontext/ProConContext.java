@@ -1,8 +1,8 @@
 package reviewcontext;
 
 import context.Context;
-import objects.Review;
-import objects.ReviewProCon;
+import objects.store.Review;
+import objects.store.ReviewProCon;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ProConContext extends Context<ReviewProCon> {
 
     public ProConContext(String connectionString) {
-        super(ReviewProCon.class, connectionString);
+        super(ReviewProCon.class, connectionString, true);
     }
 
     public Review addProCons(Review review) {

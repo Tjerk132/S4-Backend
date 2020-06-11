@@ -2,10 +2,10 @@ package productcontext;
 
 import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
-import objects.CartItem;
-import objects.Product;
-import objects.ShoppingCart;
-import objects.TopRatedSuggestion;
+import objects.store.CartItem;
+import objects.store.Product;
+import objects.store.ShoppingCart;
+import objects.store.TopRatedSuggestion;
 import reviewcontext.ReviewContext;
 
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProductContext extends Context<Product> {
 
     public ProductContext(String connectionString) {
-        super(Product.class, connectionString);
+        super(Product.class, connectionString, true);
         this.reviewContext = new ReviewContext(connectionString);
     }
 

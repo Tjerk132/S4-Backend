@@ -1,9 +1,9 @@
-package objects;
+package objects.store;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "ProsAndCons")
+@DatabaseTable(tableName = "pros-and-cons")
 public class ReviewProCon {
 
     public ReviewProCon() {

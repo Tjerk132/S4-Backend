@@ -1,7 +1,7 @@
 package nl.fhict.s4.restserver.controllers;
 
 import nl.fhict.s4.restserver.config.exceptions.CustomNotFoundException;
-import objects.Review;
+import objects.store.Review;
 import org.springframework.web.bind.annotation.*;
 import repositories.ReviewRepository;
 import javax.ws.rs.core.MediaType;

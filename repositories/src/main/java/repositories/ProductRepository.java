@@ -1,8 +1,8 @@
 package repositories;
 
-import objects.Product;
-import objects.ShoppingCart;
-import objects.TopRatedSuggestion;
+import objects.store.Product;
+import objects.store.ShoppingCart;
+import objects.store.TopRatedSuggestion;
 import org.springframework.stereotype.Repository;
 import productcontext.ProductContext;
 import repository.GlobalRepository;

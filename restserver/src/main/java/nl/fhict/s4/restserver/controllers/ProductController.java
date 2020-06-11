@@ -2,9 +2,9 @@ package nl.fhict.s4.restserver.controllers;
 
 import enums.Category;
 import nl.fhict.s4.restserver.config.exceptions.CustomNotFoundException;
-import objects.Product;
-import objects.ShoppingCart;
-import objects.TopRatedSuggestion;
+import objects.store.Product;
+import objects.store.ShoppingCart;
+import objects.store.TopRatedSuggestion;
 import org.springframework.web.bind.annotation.*;
 import repositories.ProductRepository;
 import javax.ws.rs.core.MediaType;

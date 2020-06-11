@@ -1,9 +1,9 @@
 package nl.fhict.s4.restserver.config;
 
 //import nl.fhict.s4.restserver.config.CorsConfig;
-//import nl.fhict.s4.restserver.security.jwt.JWTAuthenticationFilter;
+import nl.fhict.s4.restserver.security.jwt.JWTAuthenticationFilter;
 import nl.fhict.s4.restserver.security.jwt.JWTLoginFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import nl.fhict.s4.restserver.security.jwt.authentication.CustomAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,47 +21,52 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public WebSecurityConfig() {
+        this.customAuthenticationProvider = new CustomAuthenticationProvider();
+    }
+
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(customAuthenticationProvider);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         // disable caching
         http
-            .headers()
-            .cacheControl();
+                .headers()
+                .cacheControl();
 
         // disable csrf for our requests.
         http
-            .csrf()
-            .disable();
+                .csrf()
+                .disable();
 
         //only permit secure requests
         http
-            .requiresChannel()
-            .anyRequest()
-            .requiresSecure();
+                .requiresChannel()
+                .anyRequest()
+                .requiresSecure();
 
         http
-            .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/*")
-            .permitAll();
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/login")
+                .permitAll()
 
-//        http.authorizeRequests()
-//        .antMatchers("/").permitAll()
-//        .antMatchers(HttpMethod.POST, "/users/login").permitAll()
-////
-//////        .antMatchers("/oldUsers").permitAll()
-////        .anyRequest().authenticated()
-////
-//        .and()
-////        // We filter the api/login requests
-//        .addFilterBefore(new JWTLoginFilter("/api/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-////        // And filter other requests to check the presence of JWT in header
-//        .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated()
 
+                .and()
+                // We filter the api/login requests
+                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+                // And filter other requests to check the presence of JWT in header
+                .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-        @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+//        @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         // Create a default account
 
         //Prior to Spring Security 5.0, the default PasswordEncoder
@@ -96,5 +101,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //            .withUser("admin")
 //            .password("{noop}ts321")
 //            .roles("USER", "ADMIN");
-    }
+//    }
 }
