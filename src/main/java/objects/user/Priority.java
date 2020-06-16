@@ -5,7 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import enums.Role;
 
-@DatabaseTable(tableName = "roles")
+@DatabaseTable(tableName = "priority")
 public class Priority {
 
     public Priority() {

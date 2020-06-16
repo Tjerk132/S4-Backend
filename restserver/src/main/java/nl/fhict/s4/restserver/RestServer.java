@@ -1,6 +1,5 @@
 package nl.fhict.s4.restserver;
 
-import nl.fhict.s4.restserver.security.jwt.authentication.CustomAuthenticationProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -11,9 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -42,16 +39,10 @@ import java.util.Collections;
 
 //To discard the security auto-configuration and add your own configuration, you need to exclude the SecurityAutoConfiguration class.
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class DemoApplication {
-
-    @GetMapping(value = "/")
-    public String index() {
-
-        return "index.html";
-    }
+public class RestServer {
 
     public static void main(String[] args)   {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(RestServer.class, args);
     }
 
     @Bean

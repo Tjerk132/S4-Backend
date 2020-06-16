@@ -6,13 +6,14 @@ import objects.user.Priority;
 
 import java.sql.SQLException;
 
-class PriorityContext extends Context<Priority> {
+class PriorityContext extends Context<Priority> implements IPriorityContext {
 
     PriorityContext(String connectionString) {
         super(Priority.class, connectionString);
     }
 
-    Priority getByUserId(long userId) {
+    @Override
+    public Priority getByUserId(long userId) {
 
         try {
             return dao.queryBuilder()

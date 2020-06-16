@@ -1,7 +1,9 @@
 package objects.store;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import enums.Category;
 
 @DatabaseTable(tableName = "products")
 public class Product {
@@ -16,8 +18,8 @@ public class Product {
     @DatabaseField
     private String name;
 
-    @DatabaseField
-    private String category;
+    @DatabaseField(dataType = DataType.ENUM_STRING)
+    private Category category;
 
     @DatabaseField
     private String imageUrl;
@@ -37,7 +39,7 @@ public class Product {
         return name;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -81,7 +83,7 @@ public class Product {
         this.name = name;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

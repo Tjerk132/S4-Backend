@@ -8,6 +8,7 @@ import objects.store.CartItem;
 import objects.store.Product;
 import objects.store.ShoppingCart;
 import objects.store.TopRatedSuggestion;
+import reviewcontext.IReviewContext;
 import reviewcontext.ReviewContext;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class ProductContext extends Context<Product> implements IProductContext 
         this.reviewContext = new ReviewContext(connectionString);
     }
 
-    private ReviewContext reviewContext;
+    private IReviewContext reviewContext;
 
     @Override
     public List<Product> getAll() {

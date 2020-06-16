@@ -2,15 +2,13 @@ package util;
 
 import objects.store.Review;
 import objects.store.ReviewProCon;
+import reviewcontext.IProConContext;
 import reviewcontext.ProConContext;
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class ReviewCreator {
 
@@ -18,7 +16,7 @@ public class ReviewCreator {
         this.proConContext = new ProConContext(connectionString);
     }
 
-    private ProConContext proConContext;
+    private IProConContext proConContext;
 
     private void setMillisToTimeStamp(Review review) {
         //convert time millis to timeStamp (mySQL doesn't support 13 digit timeStamp millis)
@@ -34,7 +32,7 @@ public class ReviewCreator {
         try {
             timeMillis = df.parse(review.getDate()).getTime();
         }
-        catch (ParseException e) {}
+        catch (ParseException ignored) {}
 
         review.setDate(0);
         review.setTimeMillis(timeMillis);

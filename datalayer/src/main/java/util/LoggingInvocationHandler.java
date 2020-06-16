@@ -1,6 +1,7 @@
 package util;
 
 import enums.AdminActivityStatus;
+import org.springframework.http.HttpMethod;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import usercontext.AdminActivityContext;
@@ -30,7 +31,7 @@ public class LoggingInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        RequestMethod requestMethod = getRequestMethod(method);
+        HttpMethod requestMethod = getRequestMethod(method);
 
         try {
 
@@ -49,13 +50,13 @@ public class LoggingInvocationHandler implements InvocationHandler {
         }
     }
 
-    private RequestMethod getRequestMethod(Method method) {
+    private HttpMethod getRequestMethod(Method method) {
 
         String methodName = method.getName();
         if(methodName.contains("login") || methodName.contains("register")) {
-            return RequestMethod.POST;
+            return HttpMethod.POST;
         }
-        for(RequestMethod m : RequestMethod.values()) {
+        for(HttpMethod m : HttpMethod.values()) {
             if(methodName.contains(m.name().toLowerCase())) {
                 return m;
             }

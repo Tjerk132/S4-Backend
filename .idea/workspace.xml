@@ -45,8 +45,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -94,9 +94,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DemoApplication">
-    <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="nl.fhict.s4.restserver.DemoApplication" />
+  <component name="RunManager" selected="Application.RestServer">
+    <configuration name="RestServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="nl.fhict.s4.restserver.RestServer" />
       <module name="restserver" />
       <extension name="coverage">
         <pattern>
@@ -108,37 +108,84 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoggingInvocationHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="util.LoggingInvocationHandler" />
+    <configuration name="AdminActivityTests.testAdminActivityWithException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="datalayer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="util.*" />
+          <option name="PATTERN" value="modeltests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="modeltests" />
+      <option name="MAIN_CLASS_NAME" value="modeltests.AdminActivityTests" />
+      <option name="METHOD_NAME" value="testAdminActivityWithException" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="X" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="util.X" />
+    <configuration name="HashSaltAuthenticationTests.checkSaltedHash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="datalayer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="util.*" />
+          <option name="PATTERN" value="utiltests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="utiltests" />
+      <option name="MAIN_CLASS_NAME" value="utiltests.HashSaltAuthenticationTests" />
+      <option name="METHOD_NAME" value="checkSaltedHash" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTests.testCreateReview" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="datalayer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modeltests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modeltests" />
+      <option name="MAIN_CLASS_NAME" value="modeltests.ReviewTests" />
+      <option name="METHOD_NAME" value="testCreateReview" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTests.testSetReviewDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="datalayer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modeltests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modeltests" />
+      <option name="MAIN_CLASS_NAME" value="modeltests.ReviewTests" />
+      <option name="METHOD_NAME" value="testSetReviewDate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="restserver" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="nl.fhict.s4.restserver.RestServer" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DemoApplication" />
-        <item itemvalue="Application.LoggingInvocationHandler" />
-        <item itemvalue="Application.X" />
+        <item itemvalue="Application.RestServer" />
+        <item itemvalue="JUnit.HashSaltAuthenticationTests.checkSaltedHash" />
+        <item itemvalue="JUnit.AdminActivityTests.testAdminActivityWithException" />
+        <item itemvalue="JUnit.ReviewTests.testSetReviewDate" />
+        <item itemvalue="JUnit.ReviewTests.testCreateReview" />
       </list>
     </recent_temporary>
   </component>
@@ -146,17 +193,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@485393b9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@485393b9" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4ce909a2" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -174,7 +211,7 @@
       <updated>1590574438294</updated>
       <workItem from="1590574439630" duration="244000" />
       <workItem from="1591905427455" duration="18144000" />
-      <workItem from="1592232255463" duration="24541000" />
+      <workItem from="1592232255463" duration="37278000" />
     </task>
     <servers />
   </component>

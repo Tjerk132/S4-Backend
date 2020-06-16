@@ -1,6 +1,8 @@
 package reviewcontext;
 
+import context.IContext;
 import objects.store.Review;
+import objects.store.ReviewProCon;
 
 /**
  * Interface provided for the ProConContext with
@@ -8,7 +10,7 @@ import objects.store.Review;
  *
  * @author Tjerk Sevenich
  */
-public interface IProConContext {
+public interface IProConContext extends IContext<ReviewProCon> {
 
     /**
      * add the pros and cons to the review

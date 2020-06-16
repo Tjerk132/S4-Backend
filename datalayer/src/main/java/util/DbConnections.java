@@ -1,12 +1,15 @@
 package util;
 
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
-
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DbConnections {
+
+    protected static final Logger logger = Logger.getLogger(DbConnections.class.getName());
 
     private static final String JDBC = "jdbc";
 
@@ -47,7 +50,7 @@ public class DbConnections {
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return source;
     }
