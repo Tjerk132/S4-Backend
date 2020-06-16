@@ -16,14 +16,22 @@ public class AdminActivity {
         // ORMLite needs a no-arg constructor
     }
 
-    public AdminActivity(int editorId, RequestMethod method, AdminActivityStatus status, String type, int itemId) {
+    public AdminActivity(int editorId, RequestMethod method, AdminActivityStatus status, String type, String exception, int itemId) {
         this.editorId = editorId;
         this.method = method;
         this.status = status;
         this.type = type;
-        this.itemId = itemId;
         this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                        .format(new Timestamp(System.currentTimeMillis()));
+                .format(new Timestamp(System.currentTimeMillis()));
+
+        if(exception != null) {
+            this.exception = exception;
+        }
+        else {
+            this.itemId = itemId;
+            this.exception = "none";
+        }
+
     }
 
     @DatabaseField(generatedId = true)
@@ -43,6 +51,9 @@ public class AdminActivity {
 
     @DatabaseField
     private String date;
+
+    @DatabaseField
+    private String exception;
 
     @DatabaseField(dataType = DataType.ENUM_STRING)
     private AdminActivityStatus status;

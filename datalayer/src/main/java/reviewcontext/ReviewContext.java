@@ -1,18 +1,20 @@
 package reviewcontext;
 
 import context.Context;
+import enums.AdminActivityStatus;
 import objects.store.Product;
 import objects.store.Review;
+import org.springframework.web.bind.annotation.RequestMethod;
 import util.ReviewCreator;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ReviewContext extends Context<Review> {
+public class ReviewContext extends Context<Review> implements IReviewContext {
 
     public ReviewContext(String connectionString) {
-        super(Review.class, connectionString, true);
+        super(Review.class, connectionString);
         this.reviewCreator = new ReviewCreator(connectionString);
     }
 
@@ -62,6 +64,7 @@ public class ReviewContext extends Context<Review> {
 
             reviewCreator.proConContextAddPros(review.getPros(), reviewId, productId);
             reviewCreator.proConContextAddCons(review.getCons(), reviewId, productId);
+
         }
         catch (Exception e) {
             logger.warning(e.toString());
@@ -71,6 +74,7 @@ public class ReviewContext extends Context<Review> {
         }
     }
 
+    @Override
     public List<Review> getByProductId(long id) {
         List<Review> reviews = null;
         try {
@@ -92,6 +96,7 @@ public class ReviewContext extends Context<Review> {
         return reviews;
     }
 
+    @Override
     public long getProductReviewCount(long id) {
         long count = 0;
         try {
@@ -106,6 +111,7 @@ public class ReviewContext extends Context<Review> {
         return count;
     }
 
+    @Override
     public double getProductAvgRating(Product product) {
 
         List<Review> reviews = getByProductId(product.getId());

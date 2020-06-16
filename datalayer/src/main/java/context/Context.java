@@ -3,58 +3,30 @@ package context;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
-import objects.user.AdminActivity;
-import usercontext.AdminActivityContext;
 import util.DbConnections;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class Context<T> implements IContext<T> {
 
-    public Context(Class<T> clazz, String connectionString, boolean logActivity) {
+    public Context(Class<T> clazz, String connectionString) {
 
-        //create log activity context for context if requested
-        if (logActivity) {
-            setConnectionSource(connectionString, clazz);
-            createLogActivityDao(connectionString);
-        }
-        // if class is not activity log dao itself
-        else if(!clazz.isInstance(AdminActivity.class)) {
-            setConnectionSource(connectionString, clazz);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private void createLogActivityDao(String connectionString) {
-        this.adminActivityContext = new AdminActivityContext(connectionString);
-        adminActivityContext.setAdminActivityDao(createDao(AdminActivity.class));
-    }
-    @SuppressWarnings("unchecked")
-    private void setConnectionSource(String connectionString, Class<?> clazz) {
         this.connectionSource = DbConnections.createOrmConnection(connectionString);
-        this.dao = createDao(clazz);
-    }
-
-    private Dao createDao(Class<?> clazz) {
         try {
-            return DaoManager.createDao(connectionSource, clazz);
+            this.dao = DaoManager.createDao(connectionSource, clazz);
         }
         catch (SQLException e) {
-//            logger.warning(e.toString());
-            return null;
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 
     private JdbcPooledConnectionSource connectionSource;
 
     protected Dao<T, Long> dao;
-
-    protected AdminActivityContext adminActivityContext;
 
     protected static final Logger logger = Logger.getLogger(Context.class.getName());
 
@@ -67,7 +39,7 @@ public abstract class Context<T> implements IContext<T> {
             item = dao.queryForId(id);
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         finally {
             this.close();
@@ -92,10 +64,19 @@ public abstract class Context<T> implements IContext<T> {
             dao.create(item);
         }
         catch (Exception e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         finally {
             this.close();
+        }
+    }
+
+    @Override
+    public void update(T item) {
+        try {
+            dao.update(item);
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 
@@ -105,7 +86,7 @@ public abstract class Context<T> implements IContext<T> {
         try {
             dao.delete(item);
         } catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         finally {
             this.close();
@@ -119,7 +100,7 @@ public abstract class Context<T> implements IContext<T> {
             }
         }
         catch (IOException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 }

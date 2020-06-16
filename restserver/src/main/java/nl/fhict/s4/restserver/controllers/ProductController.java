@@ -43,6 +43,14 @@ public class ProductController {
         return product;
     }
 
+    @PutMapping(path = "update",
+    consumes = MediaType.APPLICATION_JSON,
+    produces = MediaType.APPLICATION_JSON)
+    public Product updateProduct(@RequestBody Product product) {
+        repository.update(product);
+        return product;
+    }
+
     @DeleteMapping(path = "delete",
     consumes = MediaType.APPLICATION_JSON,
     produces = MediaType.APPLICATION_JSON)

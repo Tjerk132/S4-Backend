@@ -1,5 +1,6 @@
 package usercontext;
 
+import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
 import objects.user.User;
 import util.HashSaltAuthentication;
@@ -8,10 +9,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserContext extends Context<User> {
+public class UserContext extends Context<User> implements IUserContext {
 
     public UserContext(String connectionString) {
-        super(User.class, connectionString, true);
+        super(User.class, connectionString);
         this.priorityContext = new PriorityContext(connectionString);
     }
 
@@ -59,24 +60,22 @@ public class UserContext extends Context<User> {
         try {
             boolean existing = dao.queryBuilder()
                 .where()
-                 .eq("username", user.getUsername())
+                 .eq("username", new SelectArg(user.getUsername()))
                  .countOf() != 0;
 
             if(!existing) {
                 user.setPassword(HashSaltAuthentication.getSaltedHash(user.getPassword()));
                 dao.create(user);
             }
-            else throw new IllegalArgumentException();
+            else throw new IllegalArgumentException("A user with that username already exists");
         }
         //only catch sqlExceptions
         catch (SQLException e) {
             logger.warning(e.toString());
         }
-        finally {
-            this.close();
-        }
     }
 
+    @Override
     public User loginUser(User user) {
 
         try {
@@ -94,17 +93,19 @@ public class UserContext extends Context<User> {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             logger.warning(e.toString());
         }
         return null;
     }
 
+    @Override
     public String getEmail(long id) {
         try {
 
             return dao.queryBuilder()
                     .where()
-                    .eq("id", id)
+                    .eq("id", new SelectArg(id))
                     .queryForFirst().getEmailAddress();
         }
         catch (SQLException e) {
@@ -113,19 +114,20 @@ public class UserContext extends Context<User> {
         }
     }
 
+    @Override
     public User getByName(String name) {
         try {
-            User user = dao.queryBuilder()
+            User user =
+                    dao.queryBuilder()
                     .where()
-                    .eq("username", name)
+                    .eq("username", new SelectArg(name))
                     .queryForFirst();
 
             user.setRole(priorityContext.getByUserId(user.getId()).getRole());
-
             return user;
         }
         catch (SQLException e) {
-//            logger.warning(e.toString());
+            logger.warning(e.toString());
             return null;
         }
     }

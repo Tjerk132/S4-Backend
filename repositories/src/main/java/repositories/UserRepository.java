@@ -3,17 +3,17 @@ package repositories;
 import objects.user.User;
 import org.springframework.stereotype.Repository;
 import repository.GlobalRepository;
+import usercontext.IUserContext;
 import usercontext.UserContext;
 
 @Repository
 public class UserRepository extends GlobalRepository<User> {
 
     public UserRepository() {
-        super(new UserContext(GlobalRepository.DB_STRING));
-        this.userContext = (UserContext) context;
+        this.userContext = (IUserContext) getContext(new UserContext(GlobalRepository.DB_STRING), IUserContext.class, User.class);
     }
 
-    private UserContext userContext;
+    private IUserContext userContext;
 
     public User loginUser(User user) {
         return userContext.loginUser(user);

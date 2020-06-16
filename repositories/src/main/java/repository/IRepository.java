@@ -25,6 +25,12 @@ public interface IRepository<T> {
     void add(final T entity);
 
     /**
+     * update the object in the database
+     * @param entity the object to be updated
+     */
+    void update(final T entity);
+
+    /**
      * remove the object from the database
      * @param entity the object to be deleted
      */

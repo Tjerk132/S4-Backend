@@ -1,19 +1,26 @@
 package repository;
 
-import context.Context;
+import context.IContext;
+import usercontext.IUserContext;
 import util.DbConnections;
+import util.LoggingInvocationHandler;
 
+import java.lang.reflect.Proxy;
 import java.util.List;
 
 public abstract class GlobalRepository<T> implements IRepository<T> {
 
-    protected GlobalRepository(Context<T> context) {
+    protected Object getContext(IContext<T> context, Class contextImpl, Class<?> objectClass) {
+
         this.context = context;
+        return Proxy.newProxyInstance(LoggingInvocationHandler.class.getClassLoader(),
+            new Class[] {contextImpl},
+            new LoggingInvocationHandler (context, objectClass, DB_STRING));
     }
 
     protected static final String DB_STRING = DbConnections.inMemoryDB();
 
-    protected Context<T> context;
+    private IContext<T> context;
 
     @Override
     public T getById(long id) {
@@ -31,7 +38,11 @@ public abstract class GlobalRepository<T> implements IRepository<T> {
     }
 
     @Override
+    public void update(T object) { context.update(object); }
+
+    @Override
     public void delete(T object) {
         context.delete(object);
     }
+
 }

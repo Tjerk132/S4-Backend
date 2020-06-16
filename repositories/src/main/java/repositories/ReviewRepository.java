@@ -3,6 +3,7 @@ package repositories;
 import objects.store.Review;
 import org.springframework.stereotype.Repository;
 import repository.GlobalRepository;
+import reviewcontext.IReviewContext;
 import reviewcontext.ReviewContext;
 
 import java.util.List;
@@ -11,11 +12,10 @@ import java.util.List;
 public class ReviewRepository extends GlobalRepository<Review> {
 
     public ReviewRepository() {
-        super(new ReviewContext(GlobalRepository.DB_STRING));
-        this.reviewContext = (ReviewContext) context;
+        this.reviewContext = (IReviewContext) getContext(new ReviewContext(GlobalRepository.DB_STRING), IReviewContext.class, Review.class);
     }
 
-    private ReviewContext reviewContext;
+    private IReviewContext reviewContext;
 
     public List<Review> getByProductId(long id) {
         return reviewContext.getByProductId(id);

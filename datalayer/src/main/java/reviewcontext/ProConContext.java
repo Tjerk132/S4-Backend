@@ -1,5 +1,6 @@
 package reviewcontext;
 
+import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
 import objects.store.Review;
 import objects.store.ReviewProCon;
@@ -9,20 +10,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProConContext extends Context<ReviewProCon> {
+public class ProConContext extends Context<ReviewProCon> implements IProConContext {
 
     public ProConContext(String connectionString) {
-        super(ReviewProCon.class, connectionString, true);
+        super(ReviewProCon.class, connectionString);
     }
 
+    @Override
     public Review addProCons(Review review) {
 
         try {
             List<ReviewProCon> proCons = dao.queryBuilder()
                     .where()
-                    .eq("productId", review.getProductId())
+                    .eq("productId", new SelectArg(review.getProductId()))
                     .and()
-                    .eq("reviewId", review.getId())
+                    .eq("reviewId", new SelectArg(review.getId()))
                     .query();
 
             review.addPros(getProConContent(proCons, "pro"));
@@ -88,11 +90,12 @@ public class ProConContext extends Context<ReviewProCon> {
         }
     }
 
+    @Override
     public void getProConsByProduct(Review review) {
         try {
             List<ReviewProCon> proCons = dao.queryBuilder()
                     .where()
-                    .eq("reviewId", review.getId())
+                    .eq("reviewId", new SelectArg(review.getId()))
                     .query();
 
             review.addPros(getProConContent(proCons, "pro"));

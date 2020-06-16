@@ -33,21 +33,23 @@ public class DbConnections {
     public static JdbcPooledConnectionSource createOrmConnection(String connectionString) {
         List<String> dbProperties = Arrays.asList(connectionString.split("%"));
         final String dbString = dbProperties.get(0);
+
+        JdbcPooledConnectionSource source = null;
         try {
             //in-memory db
             if(dbProperties.size() == 1) {
-                return new JdbcPooledConnectionSource(dbString);
+                source = new JdbcPooledConnectionSource(dbString);
             }
             //production db
             else {
-                return new JdbcPooledConnectionSource(dbString,
+                source = new JdbcPooledConnectionSource(dbString,
                         dbProperties.get(1), dbProperties.get(2));
             }
         }
         catch (SQLException e) {
-//            logger.warn(e.toString());
-            return null;
+            e.printStackTrace();
         }
+        return source;
     }
 
     private enum dbType {

@@ -4,6 +4,7 @@ import objects.store.Product;
 import objects.store.ShoppingCart;
 import objects.store.TopRatedSuggestion;
 import org.springframework.stereotype.Repository;
+import productcontext.IProductContext;
 import productcontext.ProductContext;
 import repository.GlobalRepository;
 
@@ -13,11 +14,10 @@ import java.util.List;
 public class ProductRepository extends GlobalRepository<Product> {
 
     public ProductRepository() {
-        super(new ProductContext(GlobalRepository.DB_STRING));
-        this.productContext = (ProductContext) context;
+        this.productContext = (IProductContext) getContext(new ProductContext(GlobalRepository.DB_STRING), IProductContext.class, Product.class);
     }
 
-    private ProductContext productContext;
+    private IProductContext productContext;
 
     public List<Product> getByCategory(String category) {
         return productContext.getByCategory(category);
@@ -27,7 +27,7 @@ public class ProductRepository extends GlobalRepository<Product> {
         return productContext.getProductsByName(name);
     }
 
-    public void removeBasketProductsFromStore(ShoppingCart shoppingCart) { productContext.removeBasketProductsFromStore(shoppingCart); }
+    public void removeBasketProductsFromStore(ShoppingCart shoppingCart) { productContext.deleteBasketProductsFromStore(shoppingCart); }
 
     public List<TopRatedSuggestion> getTopRatedSuggestions() {
         return productContext.getTopRatedSuggestions();

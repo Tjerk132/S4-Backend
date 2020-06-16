@@ -2,6 +2,8 @@ package productcontext;
 
 import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
+import context.IContext;
+import enums.AdminActivityStatus;
 import objects.store.CartItem;
 import objects.store.Product;
 import objects.store.ShoppingCart;
@@ -13,10 +15,10 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductContext extends Context<Product> {
+public class ProductContext extends Context<Product> implements IProductContext {
 
     public ProductContext(String connectionString) {
-        super(Product.class, connectionString, true);
+        super(Product.class, connectionString);
         this.reviewContext = new ReviewContext(connectionString);
     }
 
@@ -50,14 +52,47 @@ public class ProductContext extends Context<Product> {
         return product;
     }
 
+    @Override
+    public void add(Product product) {
 
+        try {
+            dao.create(product);
+        }
+        catch (Exception e) {
+            logger.warning(e.toString());
+        }
+    }
+
+    @Override
+    public void delete(Product product) {
+
+        try {
+            dao.delete(product);
+        }
+        catch (SQLException e) {
+            logger.warning(e.toString());
+        }
+    }
+
+    @Override
+    public void update(Product product) {
+        try {
+            dao.update(product);
+
+        } catch (SQLException e) {
+            logger.warning(e.toString());
+
+        }
+    }
+
+    @Override
     public List<Product> getByCategory(String category) {
 
         List<Product> products = new LinkedList<>();
         try {
             products = dao.queryBuilder()
                     .where()
-                    .eq("category", category)
+                    .eq("category", new SelectArg(category))
                     .query();
 
             for (Product p : products) {
@@ -70,6 +105,7 @@ public class ProductContext extends Context<Product> {
         return products;
     }
 
+    @Override
     public List<Product> getProductsByName(String productName) {
 
         List<Product> products = new LinkedList<>();
@@ -89,7 +125,8 @@ public class ProductContext extends Context<Product> {
         return products;
     }
 
-    public void removeBasketProductsFromStore(ShoppingCart shoppingCart) {
+    @Override
+    public void deleteBasketProductsFromStore(ShoppingCart shoppingCart) {
         for(CartItem cartItem : shoppingCart.getProducts()) {
             int quantity = cartItem.getQuantity();
             int productId = cartItem.getProduct().getId();
@@ -108,11 +145,13 @@ public class ProductContext extends Context<Product> {
 
             } catch (SQLException e) {
                 logger.warning(e.toString());
+
             }
         }
         this.close();
     }
 
+    @Override
     public List<TopRatedSuggestion> getTopRatedSuggestions() {
 
         List<TopRatedSuggestion> topRatedSuggestions = new LinkedList<>();

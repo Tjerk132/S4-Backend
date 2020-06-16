@@ -42,6 +42,14 @@
     </expand>
     <select />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -86,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DemoApplication">
     <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="nl.fhict.s4.restserver.DemoApplication" />
       <module name="restserver" />
@@ -100,9 +108,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LoggingInvocationHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="util.LoggingInvocationHandler" />
+      <module name="datalayer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="X" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="util.X" />
+      <module name="datalayer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DemoApplication" />
+        <item itemvalue="Application.LoggingInvocationHandler" />
+        <item itemvalue="Application.X" />
       </list>
     </recent_temporary>
   </component>
@@ -127,7 +163,8 @@
       <option name="presentableId" value="Default" />
       <updated>1590574438294</updated>
       <workItem from="1590574439630" duration="244000" />
-      <workItem from="1591905427455" duration="4072000" />
+      <workItem from="1591905427455" duration="18144000" />
+      <workItem from="1592232255463" duration="18694000" />
     </task>
     <servers />
   </component>
@@ -146,5 +183,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/S4_Backend$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1592306595775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>nl.fhict.s4.restserver.*</FILTER>
+    </SUITE>
   </component>
 </project>
