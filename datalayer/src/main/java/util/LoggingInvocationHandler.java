@@ -7,6 +7,9 @@ import usercontext.AdminActivityContext;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoggingInvocationHandler implements InvocationHandler {
 
@@ -22,6 +25,8 @@ public class LoggingInvocationHandler implements InvocationHandler {
         this.clazz = clazz;
     }
 
+    protected static final Logger logger = Logger.getLogger(LoggingInvocationHandler.class.getName());
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
@@ -36,17 +41,22 @@ public class LoggingInvocationHandler implements InvocationHandler {
 
             return ret;
 
-        } catch (Throwable t) {
+        } catch (Exception e) {
 
-            context.add(requestMethod, AdminActivityStatus.FAILED, this.clazz, t.getMessage(), 0);
+            context.add(requestMethod, AdminActivityStatus.FAILED, this.clazz, e.getMessage(), 0);
 
-            throw t;
+            throw e;
         }
     }
 
     private RequestMethod getRequestMethod(Method method) {
+
+        String methodName = method.getName();
+        if(methodName.contains("login") || methodName.contains("register")) {
+            return RequestMethod.POST;
+        }
         for(RequestMethod m : RequestMethod.values()) {
-            if(method.getName().contains(m.name().toLowerCase())) {
+            if(methodName.contains(m.name().toLowerCase())) {
                 return m;
             }
         }
@@ -55,10 +65,29 @@ public class LoggingInvocationHandler implements InvocationHandler {
 
     private Integer getObjectId(Object ret) throws IllegalAccessException {
 
-        Field field = ReflectionUtils.findField(clazz, "id");
-        ReflectionUtils.makeAccessible(field);
+        Integer id = null;
+        try {
+            ret = validateReturnSingleObject(ret);
 
-        return (Integer) field.get(ret);
+            Field field = ReflectionUtils.findField(clazz, "id");
+
+            assert field != null: "id field cannot be null";
+            ReflectionUtils.makeAccessible(field);
+
+            id = (Integer) field.get(ret);
+        }
+        catch (IllegalArgumentException | AssertionError e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+        return id;
+    }
+
+    private Object validateReturnSingleObject(Object ret) {
+        //return only one value if multiple exist (to log)
+        if (ret instanceof AbstractList) {
+            return ((AbstractList) ret).subList(0,1);
+        }
+        else return ret;
     }
 }
 

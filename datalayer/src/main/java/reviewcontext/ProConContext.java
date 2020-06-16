@@ -4,10 +4,9 @@ import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
 import objects.store.Review;
 import objects.store.ReviewProCon;
-
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class ProConContext extends Context<ReviewProCon> implements IProConContext {
@@ -17,7 +16,7 @@ public class ProConContext extends Context<ReviewProCon> implements IProConConte
     }
 
     @Override
-    public Review addProCons(Review review) {
+    public void addProCons(Review review) {
 
         try {
             List<ReviewProCon> proCons = dao.queryBuilder()
@@ -32,61 +31,7 @@ public class ProConContext extends Context<ReviewProCon> implements IProConConte
             review.addCons(getProConContent(proCons, "con"));
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
-        }
-        //don't close connection here
-        return review;
-    }
-
-    @Override
-    public ReviewProCon getById(long id) {
-
-        ReviewProCon proCon = null;
-
-        try {
-            proCon = dao.queryForId(id);
-        }
-        catch (SQLException e) {
-            logger.warning(e.toString());
-        }
-        finally {
-            this.close();
-        }
-        return proCon;
-    }
-
-    @Override
-    public List<ReviewProCon> getAll() {
-
-        List<ReviewProCon> proCons = new LinkedList<>();
-
-        dao.forEach(proCons::add);
-
-        return proCons;
-    }
-
-    @Override
-    public void add(ReviewProCon reviewProCon) {
-
-        try {
-            dao.create(reviewProCon);
-        }
-        catch (Exception e) {
-            logger.warning(e.toString());
-        }
-        //don't close connection here
-    }
-
-    @Override
-    public void delete(ReviewProCon reviewProCon) {
-
-        try {
-            dao.delete(reviewProCon);
-        } catch (SQLException e) {
-            logger.warning(e.toString());
-        }
-        finally {
-            this.close();
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 
@@ -103,7 +48,7 @@ public class ProConContext extends Context<ReviewProCon> implements IProConConte
             review.addCons(getProConContent(proCons, "con"));
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 

@@ -28,8 +28,6 @@ public class AdminActivityContext extends Context<AdminActivity> {
 
     private AdminActivity createAdminActivity(RequestMethod method, AdminActivityStatus status, String className, String exception, Integer itemId) {
 
-        itemId = itemId == null ? 0 : itemId;
-
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         if(token != null) {
             UserInfo info = (UserInfo) token.getPrincipal();

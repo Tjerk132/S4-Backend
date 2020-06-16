@@ -8,6 +8,7 @@ import util.HashSaltAuthentication;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class UserContext extends Context<User> implements IUserContext {
 
@@ -71,7 +72,7 @@ public class UserContext extends Context<User> implements IUserContext {
         }
         //only catch sqlExceptions
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
     }
 
@@ -93,8 +94,7 @@ public class UserContext extends Context<User> implements IUserContext {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return null;
     }
@@ -109,7 +109,7 @@ public class UserContext extends Context<User> implements IUserContext {
                     .queryForFirst().getEmailAddress();
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
             return null;
         }
     }
@@ -127,7 +127,7 @@ public class UserContext extends Context<User> implements IUserContext {
             return user;
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
             return null;
         }
     }
