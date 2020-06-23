@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6459d2ab-32fc-4b52-b185-776af7bb4604" name="Default Changelist" comment="" />
+    <list default="true" id="6459d2ab-32fc-4b52-b185-776af7bb4604" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/S4-Backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/S4-Backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d3be9ef-9870-4a2f-a010-5969398af146.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d3be9ef-9870-4a2f-a010-5969398af146.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d3be9ef-9870-4a2f-a010-5969398af146/storage_v2/_src_/schema/main.uQUzAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d3be9ef-9870-4a2f-a010-5969398af146/storage_v2/_src_/schema/main.uQUzAA.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/datalayer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/datalayer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/context/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/context/Context.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/productcontext/IProductContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/productcontext/IProductContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/productcontext/ProductContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/productcontext/ProductContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/reviewcontext/IReviewContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/reviewcontext/IReviewContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/reviewcontext/ReviewContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/reviewcontext/ReviewContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/usercontext/AdminActivityContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/usercontext/AdminActivityContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/usercontext/UserContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/usercontext/UserContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/util/DbConnections.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/util/DbConnections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/src/main/java/util/LoggingInvocationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/src/main/java/util/LoggingInvocationHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/context/Context.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/context/Context.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/productcontext/IProductContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/productcontext/IProductContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/productcontext/ProductContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/productcontext/ProductContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/reviewcontext/IReviewContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/reviewcontext/IReviewContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/reviewcontext/ReviewContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/reviewcontext/ReviewContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/usercontext/AdminActivityContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/usercontext/AdminActivityContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/usercontext/UserContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/usercontext/UserContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/util/DbConnections$dbType.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/util/DbConnections$dbType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/util/DbConnections.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/util/DbConnections.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datalayer/target/classes/util/LoggingInvocationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/datalayer/target/classes/util/LoggingInvocationHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/repositories.iml" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/repositories.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/repositories/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/repositories/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/repositories/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/repository/GlobalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/repository/GlobalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/target/classes/repositories/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/target/classes/repositories/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/target/classes/repositories/ReviewRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/target/classes/repositories/ReviewRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/target/classes/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/target/classes/repositories/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/target/classes/repository/GlobalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/target/classes/repository/GlobalRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/restserver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/restserver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/RestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/RestServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/security/jwt/JWTLoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/security/jwt/JWTLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/security/jwt/TokenAuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/security/jwt/TokenAuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/RestServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/RestServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/ReviewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/ReviewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/controllers/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/security/jwt/JWTLoginFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/security/jwt/JWTLoginFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/security/jwt/TokenAuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/restserver/target/classes/nl/fhict/s4/restserver/security/jwt/TokenAuthenticationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objects/store/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objects/store/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objects/store/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objects/store/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objects/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objects/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/enums/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/enums/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/objects/store/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/objects/store/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/objects/store/Review.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/objects/store/Review.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/objects/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/objects/user/User.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +98,16 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="MYSQLDB" type="feb32156:DbDataSourceImpl" />
-      </path>
     </expand>
     <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="S4-Backend" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -53,33 +116,43 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Tjerk_2\Desktop\S4-Backend\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1cUDmcizhawID2ZpAR4j7Xx5P2z" />
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlite" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/restserver/src/main/java/nl/fhict/s4/restserver/security/jwt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/datalayer/src/test/java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="contexttests" />
+      <recent name="nl.fhict.s4.restserver.security.jwt" />
+      <recent name="usercontext" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\datalayer\src\test\java" />
       <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\restserver\src\main\java\nl\fhict\s4\restserver\security\jwt" />
       <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\src\main\java\objects\store" />
       <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\src\main\java\objects" />
       <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\src\main\java\objects\store\objects" />
-      <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend\src\main\java" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="nl.fhict.s4.restserver.security.jwt" />
-      <recent name="usercontext" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Tjerk_2\Desktop\S4-Backend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -108,66 +181,63 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AdminActivityTests.testAdminActivityWithException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="datalayer" />
+    <configuration name="ProductContextTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repositories" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="modeltests.*" />
+          <option name="PATTERN" value="contexttests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="modeltests" />
-      <option name="MAIN_CLASS_NAME" value="modeltests.AdminActivityTests" />
-      <option name="METHOD_NAME" value="testAdminActivityWithException" />
+      <option name="PACKAGE_NAME" value="contexttests" />
+      <option name="MAIN_CLASS_NAME" value="contexttests.ProductContextTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductContextTests.testGetTopRatedSuggestions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repositories" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="contexttests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="contexttests" />
+      <option name="MAIN_CLASS_NAME" value="contexttests.ProductContextTests" />
+      <option name="METHOD_NAME" value="testGetTopRatedSuggestions" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HashSaltAuthenticationTests.checkSaltedHash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="datalayer" />
+    <configuration name="ReviewContextTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repositories" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="utiltests.*" />
+          <option name="PATTERN" value="contexttests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="utiltests" />
-      <option name="MAIN_CLASS_NAME" value="utiltests.HashSaltAuthenticationTests" />
-      <option name="METHOD_NAME" value="checkSaltedHash" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="contexttests" />
+      <option name="MAIN_CLASS_NAME" value="contexttests.ReviewContextTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReviewTests.testCreateReview" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="datalayer" />
+    <configuration name="UserContextTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repositories" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="modeltests.*" />
+          <option name="PATTERN" value="contexttests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="modeltests" />
-      <option name="MAIN_CLASS_NAME" value="modeltests.ReviewTests" />
-      <option name="METHOD_NAME" value="testCreateReview" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReviewTests.testSetReviewDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="datalayer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="modeltests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="modeltests" />
-      <option name="MAIN_CLASS_NAME" value="modeltests.ReviewTests" />
-      <option name="METHOD_NAME" value="testSetReviewDate" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="contexttests" />
+      <option name="MAIN_CLASS_NAME" value="contexttests.UserContextTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,10 +252,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RestServer" />
-        <item itemvalue="JUnit.HashSaltAuthenticationTests.checkSaltedHash" />
-        <item itemvalue="JUnit.AdminActivityTests.testAdminActivityWithException" />
-        <item itemvalue="JUnit.ReviewTests.testSetReviewDate" />
-        <item itemvalue="JUnit.ReviewTests.testCreateReview" />
+        <item itemvalue="JUnit.ProductContextTests.testGetTopRatedSuggestions" />
+        <item itemvalue="JUnit.ProductContextTests" />
+        <item itemvalue="JUnit.ReviewContextTests" />
+        <item itemvalue="JUnit.UserContextTests" />
       </list>
     </recent_temporary>
   </component>
@@ -211,7 +281,8 @@
       <updated>1590574438294</updated>
       <workItem from="1590574439630" duration="244000" />
       <workItem from="1591905427455" duration="18144000" />
-      <workItem from="1592232255463" duration="37278000" />
+      <workItem from="1592232255463" duration="98594000" />
+      <workItem from="1592831663326" duration="3885000" />
     </task>
     <servers />
   </component>

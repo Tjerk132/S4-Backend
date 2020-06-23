@@ -67,6 +67,7 @@ public class UserContext extends Context<User> implements IUserContext {
             if(!existing) {
                 user.setPassword(HashSaltAuthentication.getSaltedHash(user.getPassword()));
                 dao.create(user);
+                user.setRole(priorityContext.getByUserId(user.getId()).getRole());
             }
             else throw new IllegalArgumentException("A user with that username already exists");
         }
@@ -123,6 +124,11 @@ public class UserContext extends Context<User> implements IUserContext {
                     .eq("username", new SelectArg(name))
                     .queryForFirst();
 
+            if(user == null) {
+                User u = new User();
+                u.setUsername(name);
+                return u;
+            }
             user.setRole(priorityContext.getByUserId(user.getId()).getRole());
             return user;
         }

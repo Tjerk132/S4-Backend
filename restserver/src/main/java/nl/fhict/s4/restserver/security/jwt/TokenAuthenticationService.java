@@ -1,5 +1,6 @@
 package nl.fhict.s4.restserver.security.jwt;
 
+import enums.Role;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import objects.user.User;
@@ -62,7 +63,12 @@ public class TokenAuthenticationService {
                 User storedUser = repository.getByName(username);
 
                 List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-                grantedAuthorities.add(new SimpleGrantedAuthority(storedUser.getRole().toString()));
+
+                //registered
+                if(storedUser.getRole() != null) {
+                    grantedAuthorities.add(new SimpleGrantedAuthority(storedUser.getRole().toString()));
+                }
+                else grantedAuthorities.add(new SimpleGrantedAuthority(Role.USER.toString()));
 
                 return new UsernamePasswordAuthenticationToken(
                         new UserInfo(String.valueOf(storedUser.getId()), storedUser.getUsername()), storedUser.getPassword(), grantedAuthorities

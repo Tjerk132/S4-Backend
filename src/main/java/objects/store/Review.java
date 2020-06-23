@@ -2,6 +2,7 @@ package objects.store;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import enums.ReviewAuthorValue;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,8 @@ public class Review {
     private Long timeMillis;
 
     private String date;
+
+    private ReviewAuthorValue reviewAuthorValue;
 
     private List<String> pros;
 
@@ -102,6 +105,10 @@ public class Review {
         return date;
     }
 
+    public ReviewAuthorValue getReviewAuthorValue() {
+        return reviewAuthorValue;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -137,5 +144,9 @@ public class Review {
 
     public void setLiked(int liked) {
         this.liked = liked;
+    }
+
+    public void setReviewAuthorValue(ReviewAuthorValue reviewAuthorValue) {
+        this.reviewAuthorValue = reviewAuthorValue;
     }
 }

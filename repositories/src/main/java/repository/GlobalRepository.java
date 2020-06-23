@@ -1,7 +1,6 @@
 package repository;
 
 import context.IContext;
-import usercontext.IUserContext;
 import util.DbConnections;
 import util.LoggingInvocationHandler;
 
@@ -15,10 +14,10 @@ public abstract class GlobalRepository<T> implements IRepository<T> {
         this.context = context;
         return Proxy.newProxyInstance(LoggingInvocationHandler.class.getClassLoader(),
             new Class[] {contextImpl},
-            new LoggingInvocationHandler (context, objectClass, DB_STRING));
+            new LoggingInvocationHandler (context, objectClass, db_String));
     }
 
-    protected static final String DB_STRING = DbConnections.inMemoryDB();
+    protected static final String db_String = DbConnections.productionDB();
 
     private IContext<T> context;
 

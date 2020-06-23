@@ -29,7 +29,7 @@ public class AdminActivityContext extends Context<AdminActivity> implements IAdm
 
     private AdminActivity createAdminActivity(HttpMethod method, AdminActivityStatus status, String className, String exception, Integer itemId) {
 
-        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        UsernamePasswordAuthenticationToken token = getUsernamePasswordAuthenticationToken();
         if(token != null) {
             UserInfo info = (UserInfo) token.getPrincipal();
 
@@ -37,5 +37,9 @@ public class AdminActivityContext extends Context<AdminActivity> implements IAdm
             return new AdminActivity(userId, method, status, className, exception, itemId);
         }
         else return new AdminActivity(0, method, status, className, exception, itemId);
+    }
+
+    public static UsernamePasswordAuthenticationToken getUsernamePasswordAuthenticationToken() {
+        return (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
     }
 }

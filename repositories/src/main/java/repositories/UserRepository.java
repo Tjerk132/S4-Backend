@@ -10,7 +10,7 @@ import usercontext.UserContext;
 public class UserRepository extends GlobalRepository<User> {
 
     public UserRepository() {
-        this.userContext = (IUserContext) getContext(new UserContext(GlobalRepository.DB_STRING), IUserContext.class, User.class);
+        this.userContext = (IUserContext) getContext(new UserContext(GlobalRepository.db_String), IUserContext.class, User.class);
     }
 
     private IUserContext userContext;

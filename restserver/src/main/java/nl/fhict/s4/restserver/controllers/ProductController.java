@@ -8,6 +8,7 @@ import objects.store.TopRatedSuggestion;
 import org.springframework.web.bind.annotation.*;
 import repositories.ProductRepository;
 import javax.ws.rs.core.MediaType;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -67,7 +68,7 @@ public class ProductController {
 
     @GetMapping(path = "categories/{category}",
     produces = MediaType.APPLICATION_JSON)
-    public List<Product> getByCategory(@PathVariable String category) {
+    public List<Product> getByCategory(@PathVariable Category category) {
         return repository.getByCategory(category);
     }
 

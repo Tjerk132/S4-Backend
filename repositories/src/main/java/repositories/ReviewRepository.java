@@ -12,7 +12,7 @@ import java.util.List;
 public class ReviewRepository extends GlobalRepository<Review> {
 
     public ReviewRepository() {
-        this.reviewContext = (IReviewContext) getContext(new ReviewContext(GlobalRepository.DB_STRING), IReviewContext.class, Review.class);
+        this.reviewContext = (IReviewContext) getContext(new ReviewContext(GlobalRepository.db_String), IReviewContext.class, Review.class);
     }
 
     private IReviewContext reviewContext;
@@ -20,4 +20,6 @@ public class ReviewRepository extends GlobalRepository<Review> {
     public List<Review> getByProductId(long id) {
         return reviewContext.getByProductId(id);
     }
+
+    public Review likeReview(int userId, int reviewId) { return reviewContext.likeReview(userId, reviewId); }
 }

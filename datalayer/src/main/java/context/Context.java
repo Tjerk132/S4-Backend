@@ -15,7 +15,7 @@ public abstract class Context<T> implements IContext<T> {
 
     public Context(Class<T> clazz, String connectionString) {
 
-        this.connectionSource = DbConnections.createOrmConnection(connectionString);
+        this.connectionSource = DbConnections.getConnectionSource(connectionString);
         try {
             this.dao = DaoManager.createDao(connectionSource, clazz);
         }
@@ -65,9 +65,6 @@ public abstract class Context<T> implements IContext<T> {
         }
         catch (Exception e) {
             logger.log(Level.WARNING, e.getMessage(), e);
-        }
-        finally {
-            this.close();
         }
     }
 

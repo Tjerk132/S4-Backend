@@ -1,5 +1,6 @@
 package productcontext;
 
+import enums.Category;
 import objects.store.Product;
 import objects.store.ShoppingCart;
 import objects.store.TopRatedSuggestion;
@@ -19,7 +20,7 @@ public interface IProductContext {
      * @param category identifier for products to be searched by
      * @return products that have been found with the given category
      */
-    List<Product> getByCategory(String category);
+    List<Product> getByCategory(Category category);
 
     /**
      * get all products from the database with the given name.

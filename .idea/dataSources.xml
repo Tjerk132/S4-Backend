@@ -15,7 +15,7 @@
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://studmysql01.fhict.local:dbi386599</jdbc-url>
+      <jdbc-url>jdbc:mysql://studmysql01.fhict.local/dbi386599</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />

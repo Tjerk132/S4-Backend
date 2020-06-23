@@ -4,6 +4,7 @@ import nl.fhict.s4.restserver.security.jwt.JWTAuthenticationFilter;
 import nl.fhict.s4.restserver.security.jwt.JWTLoginFilter;
 import nl.fhict.s4.restserver.security.jwt.authentication.CustomAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -66,11 +67,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web)  {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**");
+        web
+            .ignoring().antMatchers(
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**");
+        web
+            .ignoring().antMatchers(HttpMethod.GET);
     }
 }

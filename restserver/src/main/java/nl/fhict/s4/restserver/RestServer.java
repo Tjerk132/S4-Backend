@@ -52,7 +52,7 @@ public class RestServer {
         config.setAllowCredentials(true);
 
         // Allow the Vue client URL and port
-        config.setAllowedOrigins(Arrays.asList("http://localhost:8005","http://192.168.178.213:8005"));
+        config.setAllowedOrigins(Arrays.asList("https://tjerk132.github.io","http://localhost:8005","http://192.168.178.213:8005"));
         // Allow only thew necessary methods
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
         // Allow all headers for now

@@ -1,6 +1,9 @@
 package util;
 
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +17,25 @@ public class DbConnections {
     private static final String JDBC = "jdbc";
 
     public static String inMemoryDB() {
-        return buildDbString(JDBC, dbType.SQLITE.getType(), "Database.db");
+        return buildDbString(JDBC, dbType.SQLITE.getType(), getDbLocation());
+    }
+
+    private static String getDbLocation() {
+        try {
+            String currentPath = new File("").getCanonicalPath();
+
+            //get index of module in path
+            int currentModuleIndex = currentPath.lastIndexOf('\\') + 1;
+            String currentModule = currentPath.substring(currentModuleIndex);
+
+            //replace module name with db file (on root dir)
+            currentPath = currentPath.replace(currentModule,"Database.db");
+            return currentPath;
+        }
+        catch (IOException e){
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+        return null;
     }
 
     public static String productionDB() {
@@ -33,11 +54,20 @@ public class DbConnections {
         return builder.toString().replace(",","%");
     }
 
-    public static JdbcPooledConnectionSource createOrmConnection(String connectionString) {
+    private static JdbcPooledConnectionSource source;
+
+    public static JdbcPooledConnectionSource getConnectionSource(String connectionString) {
+        if(source == null) {
+            createOrmConnection(connectionString);
+        }
+        return source;
+    }
+
+    private static void createOrmConnection(String connectionString) {
+
         List<String> dbProperties = Arrays.asList(connectionString.split("%"));
         final String dbString = dbProperties.get(0);
 
-        JdbcPooledConnectionSource source = null;
         try {
             //in-memory db
             if(dbProperties.size() == 1) {
@@ -52,7 +82,6 @@ public class DbConnections {
         catch (SQLException e) {
             logger.log(Level.WARNING, e.getMessage(), e);
         }
-        return source;
     }
 
     private enum dbType {

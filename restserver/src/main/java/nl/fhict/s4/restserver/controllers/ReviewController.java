@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import repositories.ReviewRepository;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reviews")
@@ -52,5 +53,11 @@ public class ReviewController {
     public Review deleteReview(@RequestBody Review review) {
         repository.delete(review);
         return review;
+    }
+
+    @GetMapping(path = "like",
+    produces = MediaType.APPLICATION_JSON)
+    public Review likeReview(@RequestParam("userId") int userId , @RequestParam("reviewId") int reviewId) {
+        return repository.likeReview(userId, reviewId);
     }
 }

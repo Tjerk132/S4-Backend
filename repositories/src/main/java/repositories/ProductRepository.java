@@ -1,5 +1,6 @@
 package repositories;
 
+import enums.Category;
 import objects.store.Product;
 import objects.store.ShoppingCart;
 import objects.store.TopRatedSuggestion;
@@ -14,12 +15,12 @@ import java.util.List;
 public class ProductRepository extends GlobalRepository<Product> {
 
     public ProductRepository() {
-        this.productContext = (IProductContext) getContext(new ProductContext(GlobalRepository.DB_STRING), IProductContext.class, Product.class);
+        this.productContext = (IProductContext) getContext(new ProductContext(GlobalRepository.db_String), IProductContext.class, Product.class);
     }
 
     private IProductContext productContext;
 
-    public List<Product> getByCategory(String category) {
+    public List<Product> getByCategory(Category category) {
         return productContext.getByCategory(category);
     }
 

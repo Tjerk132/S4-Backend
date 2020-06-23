@@ -16,7 +16,6 @@ public class UserController {
         repository = new UserRepository();
     }
 
-//    @Autowired
     private UserRepository repository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON)
@@ -43,7 +42,6 @@ public class UserController {
 
         try {
             repository.add(user);
-            //remove password after registering
             user.setPassword("$-()-$");
             user.setEmailAddress("email@host.com");
             return user;

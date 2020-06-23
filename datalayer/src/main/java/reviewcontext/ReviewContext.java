@@ -1,22 +1,27 @@
 package reviewcontext;
 
+import com.j256.ormlite.stmt.SelectArg;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import context.Context;
-import enums.AdminActivityStatus;
+import enums.ReviewAuthorValue;
 import objects.store.Product;
 import objects.store.Review;
-import org.springframework.web.bind.annotation.RequestMethod;
 import util.ReviewCreator;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class ReviewContext extends Context<Review> implements IReviewContext {
 
     public ReviewContext(String connectionString) {
         super(Review.class, connectionString);
         this.reviewCreator = new ReviewCreator(connectionString);
+        this.reviewLikeContext = new ReviewLikeContext(connectionString);
     }
+
+    private IReviewLikeContext reviewLikeContext;
 
     private ReviewCreator reviewCreator;
 
@@ -30,7 +35,7 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
             reviewCreator.createReview(review);
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return review;
     }
@@ -67,7 +72,7 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
 
         }
         catch (Exception e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         finally {
             this.close();
@@ -76,11 +81,35 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
 
     @Override
     public List<Review> getByProductId(long id) {
+
         List<Review> reviews = null;
         try {
             reviews = dao.queryBuilder()
                     .where()
-                    .eq("productId", id)
+                    .eq("productId", new SelectArg(id))
+                    .query();
+
+            //add pro's and con's to review
+            for(Review r : reviews) {
+                reviewCreator.createReviewByProduct(r);
+                r.setReviewAuthorValue(getReviewAuthorValue(r.getAuthor()));
+            }
+
+        }
+        catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+        return reviews;
+    }
+
+    @Override
+    public List<Review> getByAuthor(String author) {
+
+        List<Review> reviews = null;
+        try {
+            reviews = dao.queryBuilder()
+                    .where()
+                    .eq("author", new SelectArg(author))
                     .query();
 
             //add pro's and con's to review
@@ -90,8 +119,7 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
 
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
-
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return reviews;
     }
@@ -102,11 +130,11 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
         try {
             count = dao.queryBuilder()
                 .where()
-                .eq("productId", id)
+                .eq("productId", new SelectArg(id))
                 .countOf();
         }
         catch (SQLException e) {
-            logger.warning(e.toString());
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return count;
     }
@@ -123,4 +151,45 @@ public class ReviewContext extends Context<Review> implements IReviewContext {
         return reviews.isEmpty() ? 0 : Math.round((totalRating / (double) reviews.size()) * 10.0) / 10.0;
     }
 
+    @Override
+    public ReviewAuthorValue getReviewAuthorValue(String author) {
+
+        List<Review> userReviews = getByAuthor(author);
+
+        int liked = userReviews.stream().mapToInt(Review::getLiked).sum();
+
+        if(liked > 10) {
+            return ReviewAuthorValue.VALUED_REVIEWER;
+        }
+        else return ReviewAuthorValue.NORMAL_REVIEWER;
+    }
+
+    @Override
+    public Review likeReview(int userId, int reviewId) {
+
+        try {
+
+            boolean alreadyLiked = reviewLikeContext.alreadyLiked(userId, reviewId);
+
+            if(!alreadyLiked) {
+                //update like count of review
+                Review r = getById(reviewId);
+
+                UpdateBuilder updateBuilder = dao.updateBuilder();
+
+                updateBuilder
+                        .where()
+                        .eq("id", new SelectArg(reviewId));
+
+                updateBuilder
+                        .updateColumnValue("liked", new SelectArg(r.getLiked() + 1))
+                        .update();
+            }
+
+        }
+        catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+        return getById(reviewId);
+    }
 }

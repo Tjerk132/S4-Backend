@@ -35,6 +35,10 @@ public class Product {
 
     private long reviewCount;
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -57,10 +61,6 @@ public class Product {
 
     public long getReviewCount() {
         return reviewCount;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getStockCount() {

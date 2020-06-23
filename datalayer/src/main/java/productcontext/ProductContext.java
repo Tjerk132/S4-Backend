@@ -4,6 +4,7 @@ import com.j256.ormlite.stmt.SelectArg;
 import context.Context;
 import context.IContext;
 import enums.AdminActivityStatus;
+import enums.Category;
 import objects.store.CartItem;
 import objects.store.Product;
 import objects.store.ShoppingCart;
@@ -87,7 +88,7 @@ public class ProductContext extends Context<Product> implements IProductContext 
     }
 
     @Override
-    public List<Product> getByCategory(String category) {
+    public List<Product> getByCategory(Category category) {
 
         List<Product> products = new LinkedList<>();
         try {
@@ -163,8 +164,9 @@ public class ProductContext extends Context<Product> implements IProductContext 
         //order top rated suggestions by rating and reverse to get high to low
         topRatedSuggestions.sort(Comparator.comparingDouble(TopRatedSuggestion::getAvgRating).reversed());
 
-        topRatedSuggestions = topRatedSuggestions.subList(0, 5);
-
+        if(topRatedSuggestions.size() >= 5) {
+            topRatedSuggestions = topRatedSuggestions.subList(0, 5);
+        }
         return topRatedSuggestions;
     }
 }

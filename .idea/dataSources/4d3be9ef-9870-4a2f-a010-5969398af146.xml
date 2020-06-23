@@ -14,218 +14,236 @@
     <table id="7" parent="2" name="priority"/>
     <table id="8" parent="2" name="products"/>
     <table id="9" parent="2" name="pros-and-cons"/>
-    <table id="10" parent="2" name="reviews"/>
-    <table id="11" parent="2" name="sqlite_master">
+    <table id="10" parent="2" name="review-likes"/>
+    <table id="11" parent="2" name="reviews"/>
+    <table id="12" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="12" parent="2" name="sqlite_sequence">
+    <table id="13" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="13" parent="2" name="users"/>
-    <column id="14" parent="6" name="id">
+    <table id="14" parent="2" name="users"/>
+    <column id="15" parent="6" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="6" name="method">
+    <column id="16" parent="6" name="editorId">
       <Position>2</Position>
-      <DataType>VARCHAR(60)|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="16" parent="6" name="type">
+    <column id="17" parent="6" name="method">
       <Position>3</Position>
-      <DataType>VARCHAR(100)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="17" parent="6" name="itemId">
+    <column id="18" parent="6" name="type">
       <Position>4</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="18" parent="6" name="date">
+    <column id="19" parent="6" name="itemId">
       <Position>5</Position>
-      <DataType>VARCHAR(120)|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="19" parent="6" name="editorId">
+    <column id="20" parent="6" name="date">
       <Position>6</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="20" parent="6" name="status">
+    <column id="21" parent="6" name="status">
       <Position>7</Position>
-      <DataType>VARCHAR(100)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="21" parent="6" name="exception">
+    <column id="22" parent="6" name="exception">
       <Position>8</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <key id="22" parent="6" name="admin activity log_pk">
+    <key id="23" parent="6" name="admin-activity-log_pk">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="23" parent="7" name="ID">
+    <column id="24" parent="7" name="id">
       <Position>1</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="24" parent="7" name="userId">
+    <column id="25" parent="7" name="userId">
       <Position>2</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="25" parent="7" name="role">
+    <column id="26" parent="7" name="role">
       <Position>3</Position>
-      <DataType>varchar(60)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <key id="26" parent="7">
-      <ColNames>ID</ColNames>
+    <key id="27" parent="7" name="priority_pk">
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="27" parent="8" name="ID">
+    <column id="28" parent="8" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="28" parent="8" name="name">
+    <column id="29" parent="8" name="name">
       <Position>2</Position>
-      <DataType>varchar(180)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="29" parent="8" name="imageUrl">
+    <column id="30" parent="8" name="category">
       <Position>3</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="30" parent="8" name="description">
+    <column id="31" parent="8" name="imageUrl">
       <Position>4</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="31" parent="8" name="price">
+    <column id="32" parent="8" name="description">
       <Position>5</Position>
-      <DataType>LONG|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="32" parent="8" name="stockCount">
+    <column id="33" parent="8" name="price">
       <Position>6</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
-    <column id="33" parent="8" name="category">
+    <column id="34" parent="8" name="stockCount">
       <Position>7</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <key id="34" parent="8">
-      <ColNames>ID</ColNames>
+    <key id="35" parent="8" name="products_pk">
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="35" parent="9" name="ID">
+    <column id="36" parent="9" name="id">
       <Position>1</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="36" parent="9" name="productId">
+    <column id="37" parent="9" name="reviewId">
       <Position>2</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="37" parent="9" name="ProConType">
+    <column id="38" parent="9" name="productId">
       <Position>3</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="38" parent="9" name="content">
+    <column id="39" parent="9" name="proConType">
       <Position>4</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="39" parent="9" name="reviewId">
+    <column id="40" parent="9" name="content">
       <Position>5</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <key id="40" parent="9">
-      <ColNames>ID</ColNames>
+    <key id="41" parent="9" name="pros-and-cons_pk">
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <trigger id="41" parent="10" name="removeProConsOnReviewDelete">
-      <SourceTextLength>170</SourceTextLength>
+    <column id="42" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="43" parent="10" name="userId">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="44" parent="10" name="reviewId">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <key id="45" parent="10" name="review-likes_pk">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <trigger id="46" parent="11" name="removeProConsOnReviewDelete">
+      <SourceTextLength>186</SourceTextLength>
       <Turn>after-row</Turn>
       <Events>D</Events>
     </trigger>
-    <column id="42" parent="10" name="ID">
+    <column id="47" parent="11" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="43" parent="10" name="productId">
+    <column id="48" parent="11" name="productId">
       <Position>2</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="44" parent="10" name="title">
+    <column id="49" parent="11" name="author">
       <Position>3</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="45" parent="10" name="content">
+    <column id="50" parent="11" name="content">
       <Position>4</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="46" parent="10" name="starRating">
+    <column id="51" parent="11" name="starRating">
       <Position>5</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <column id="47" parent="10" name="liked">
+    <column id="52" parent="11" name="timeMillis">
       <Position>6</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>bigint|0s</DataType>
     </column>
-    <column id="48" parent="10" name="author">
+    <column id="53" parent="11" name="title">
       <Position>7</Position>
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="49" parent="10" name="timeMillis">
+    <column id="54" parent="11" name="liked">
       <Position>8</Position>
-      <DataType>BIGINT|0s</DataType>
+      <DataType>integer|0s</DataType>
     </column>
-    <key id="50" parent="10">
-      <ColNames>ID</ColNames>
+    <key id="55" parent="11" name="reviews_pk">
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="51" parent="11" name="type">
+    <column id="56" parent="12" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="52" parent="11" name="name">
+    <column id="57" parent="12" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="53" parent="11" name="tbl_name">
+    <column id="58" parent="12" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="54" parent="11" name="rootpage">
+    <column id="59" parent="12" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="55" parent="11" name="sql">
+    <column id="60" parent="12" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="56" parent="12" name="name">
+    <column id="61" parent="13" name="name">
       <Position>1</Position>
     </column>
-    <column id="57" parent="12" name="seq">
+    <column id="62" parent="13" name="seq">
       <Position>2</Position>
     </column>
-    <trigger id="58" parent="13" name="addRoleForNewUser">
-      <SourceTextLength>135</SourceTextLength>
+    <trigger id="63" parent="14" name="addRoleForNewUser">
+      <SourceTextLength>137</SourceTextLength>
       <Turn>after-row</Turn>
       <Events>I</Events>
     </trigger>
-    <column id="59" parent="13" name="ID">
+    <column id="64" parent="14" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="60" parent="13" name="username">
+    <column id="65" parent="14" name="username">
       <Position>2</Position>
-      <DataType>varchar(180)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="61" parent="13" name="password">
+    <column id="66" parent="14" name="password">
       <Position>3</Position>
-      <DataType>varchar(180)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <column id="62" parent="13" name="emailAddress">
+    <column id="67" parent="14" name="emailAddress">
       <Position>4</Position>
-      <DataType>varchar(180)|0s</DataType>
+      <DataType>varchar(160)|0s</DataType>
     </column>
-    <key id="63" parent="13">
-      <ColNames>ID</ColNames>
+    <key id="68" parent="14" name="users_pk">
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

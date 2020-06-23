@@ -40,6 +40,5 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         String name = authentication.getName();
         tokenAuthenticationService.addAuthentication(response, name);
-        response.addHeader("CryptoKey","U2FsdGVkX1+RYjnRenYxBl4T+V26pkOYtB4g1sG/ndI=");
     }
 }

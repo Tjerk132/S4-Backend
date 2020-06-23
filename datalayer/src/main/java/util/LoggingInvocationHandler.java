@@ -1,6 +1,7 @@
 package util;
 
 import enums.AdminActivityStatus;
+import objects.store.TopRatedSuggestion;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,14 +38,16 @@ public class LoggingInvocationHandler implements InvocationHandler {
 
             Object ret = method.invoke(delegate, args);
             Integer id = getObjectId(ret);
+            //set to 0 if no id's were found
+            id = id == null ? 0 : id;
 
-            context.add(requestMethod, AdminActivityStatus.SUCCESS, this.clazz, null, id);
+            context.add(requestMethod, AdminActivityStatus.SUCCESS, ret.getClass(), null, id);
 
             return ret;
 
         } catch (Exception e) {
 
-            context.add(requestMethod, AdminActivityStatus.FAILED, this.clazz, e.getMessage(), 0);
+            context.add(requestMethod, AdminActivityStatus.FAILED, clazz, e.getMessage(), 0);
 
             throw e;
         }
@@ -55,6 +58,9 @@ public class LoggingInvocationHandler implements InvocationHandler {
         String methodName = method.getName();
         if(methodName.contains("login") || methodName.contains("register")) {
             return HttpMethod.POST;
+        }
+        if(methodName.contains("like")) {
+            return HttpMethod.GET;
         }
         for(HttpMethod m : HttpMethod.values()) {
             if(methodName.contains(m.name().toLowerCase())) {
@@ -70,12 +76,20 @@ public class LoggingInvocationHandler implements InvocationHandler {
         try {
             ret = validateReturnSingleObject(ret);
 
-            Field field = ReflectionUtils.findField(clazz, "id");
+            if(ret != null && !(ret instanceof AbstractList && ((AbstractList) ret).isEmpty())) {
 
-            assert field != null: "id field cannot be null";
-            ReflectionUtils.makeAccessible(field);
+                Field field = ReflectionUtils.findField(ret.getClass(), "id");
 
-            id = (Integer) field.get(ret);
+                if(field != null ) {
+
+                    ReflectionUtils.makeAccessible(field);
+                    id = (int) field.get(ret);
+                }
+                else if (ret instanceof TopRatedSuggestion) {
+                    id = ((TopRatedSuggestion) ret).getProduct().getId();
+                }
+            }
+            else return 0;
         }
         catch (IllegalArgumentException | AssertionError e) {
             logger.log(Level.WARNING, e.getMessage(), e);
@@ -85,8 +99,8 @@ public class LoggingInvocationHandler implements InvocationHandler {
 
     private Object validateReturnSingleObject(Object ret) {
         //return only one value if multiple exist (to log)
-        if (ret instanceof AbstractList) {
-            return ((AbstractList) ret).subList(0,1);
+        if (ret instanceof AbstractList && ((AbstractList) ret).size() > 1) {
+            return ((AbstractList) ret).get(0);
         }
         else return ret;
     }
